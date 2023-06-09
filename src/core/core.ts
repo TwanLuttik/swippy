@@ -1,8 +1,13 @@
 import { SimpleCore } from "simple-core-state";
 
+type BlockTypes = Partial<{
+  text: string;
+  variable: string;
+}>;
+
 interface CoreObject {
   requestOptions: {
-    url: string;
+    url: BlockTypes[];
     method: "POST" | "GET" | "DELETE" | "PATCH";
   };
   globalOptions: {
@@ -19,7 +24,7 @@ interface CoreObject {
 const instance = new SimpleCore<CoreObject>({
   requestOptions: {
     method: "POST",
-    url: "",
+    url: [],
   },
   globalOptions: {
     currentEnv: "local",
